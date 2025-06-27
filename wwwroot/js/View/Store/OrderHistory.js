@@ -278,7 +278,7 @@ Mitosiz.Site.OrderHistory.Index.Controller = function () {
         FillData: function (listData) {
             base.Control.tbodyTable().empty();
             listData.forEach(function (data) {
-                var urlVoucher = 'https://api.yosoymitosis.com/StaticFiles/PaymentWholesale/' + data.imageUrl;
+                var urlVoucher = 'https://api.yosoymitzen.com/StaticFiles/PaymentWholesale/' + data.imageUrl;
                 var styleVoucher = data.imageUrl == '' ? "display:none;" : "";
                 var styleDelete = data.statusPurchase == 'Realizada' ? "display:none;" : "";
                 var styleApprove = data.statusPurchase == 'Pendiente' || data.statusPurchase == 'Realizada' ? "display:none;" : "";
@@ -354,7 +354,7 @@ Mitosiz.Site.OrderHistory.Index.Controller = function () {
             listDetail.forEach(function (data) {
                 base.Control.tbodyDetailOrder().append('<tr style="text-align: center;">' +
                     '<td>' + data.productName + '</td>' +
-                    '<td><img src="https://api.yosoymitosis.com/StaticFiles/ProductsImg/' + data.imageName + '" style="height: 80px"></td>' +
+                    '<td><img src="https://api.yosoymitzen.com/StaticFiles/ProductsImg/' + data.imageName + '" style="height: 80px"></td>' +
                     '<td>' + data.quantity + '</td>' +
                     '<td>' + data.subtotalNetAmount + '</td>' +
                     '</tr>');
