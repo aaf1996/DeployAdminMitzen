@@ -2702,7 +2702,10 @@
       },
       "Mitzen.Entities/1.0.0": {
         "runtime": {
-          "Mitzen.Entities.dll": {}
+          "Mitzen.Entities.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         },
         "compile": {
           "Mitzen.Entities.dll": {}
@@ -2714,7 +2717,10 @@
           "Newtonsoft.Json": "13.0.3"
         },
         "runtime": {
-          "Mitzen.Logic.dll": {}
+          "Mitzen.Logic.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         },
         "compile": {
           "Mitzen.Logic.dll": {}

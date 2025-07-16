@@ -34,7 +34,6 @@ Mitosiz.Site.Commission.Index.Controller = function () {
         txtPeriodName: function () { return $('#txtPeriodName'); },
         txtPatronBonus: function () { return $('#txtPatronBonus'); },
         txtRetirementBonus: function () { return $('#txtRetirementBonus'); },
-        txtRtiBonus: function () { return $('#txtRtiBonus'); },
         txtExtraBonus: function () { return $('#txtExtraBonus'); },
         modalUpdate: function () { return $('#modalUpdate'); },
         btnUpdateModal: function () { return $('#btnUpdateModal'); },
@@ -49,7 +48,16 @@ Mitosiz.Site.Commission.Index.Controller = function () {
                 }
             }
         },
-        AjaxRecalculationRTIBonusSuccess: function (data) {
+        RecalculationSchoolBonusSuccess: function (data) {
+            if (data) {
+                if (data.isSuccess) {
+                    $('#loading-area').fadeOut();
+                    Swal.fire("Excelente !!", "Recalculo terminado !!", "success");
+                    base.Function.GetUserCommissionForAdmin();
+                }
+            }
+        },
+        RecalculationTeamBonusSuccess: function (data) {
             if (data) {
                 if (data.isSuccess) {
                     $('#loading-area').fadeOut();
@@ -124,7 +132,6 @@ Mitosiz.Site.Commission.Index.Controller = function () {
                     base.Control.txtPeriodName().val(data.data.periodName);
                     base.Control.txtPatronBonus().val(data.data.patronBonus);
                     base.Control.txtRetirementBonus().val(data.data.retirementBonus);
-                    base.Control.txtRtiBonus().val(data.data.rtiBonus);
                     base.Control.txtExtraBonus().val(data.data.extraBonus);
                     base.Control.modalUpdate().modal('show');
                 }
@@ -171,10 +178,16 @@ Mitosiz.Site.Commission.Index.Controller = function () {
             $('#loading-area').fadeIn();
             var process = base.Control.slcProcess().val();
             if (process == "3") {
-                base.Ajax.AjaxRecalculationRTIBonus.data = {
+                base.Ajax.AjaxRecalculationSchoolBonus.data = {
                     commissionPeriodId: base.Control.slcPeriod().val()
                 };
-                base.Ajax.AjaxRecalculationRTIBonus.submit();
+                base.Ajax.AjaxRecalculationSchoolBonus.submit();
+            }
+            else if (process == "5") {
+                base.Ajax.AjaxRecalculationTeamBonus.data = {
+                    commissionPeriodId: base.Control.slcPeriod().val()
+                };
+                base.Ajax.AjaxRecalculationTeamBonus.submit();
             }
             else if (process == "2") {
                 base.Ajax.AjaxRecalculationRetirementBonus.data = {
@@ -216,7 +229,6 @@ Mitosiz.Site.Commission.Index.Controller = function () {
                 commissionId: base.Parameters.commissionId,
                 patronBonus: base.Control.txtPatronBonus().val(),
                 retirementBonus: base.Control.txtRetirementBonus().val(),
-                rtiBonus: base.Control.txtRtiBonus().val(),
                 extraBonus: base.Control.txtExtraBonus().val()
             };
             base.Ajax.AjaxUpdateCommissionUserByCommissionId.submit();
@@ -228,10 +240,15 @@ Mitosiz.Site.Commission.Index.Controller = function () {
             autoSubmit: false,
             onSuccess: base.Event.AjaxGetPeriodSuccess
         }),
-        AjaxRecalculationRTIBonus: new Mitosiz.Site.UI.Web.Components.Ajax({
-            action: Mitosiz.Site.Commission.Actions.RecalculationRTIBonus,
+        AjaxRecalculationSchoolBonus: new Mitosiz.Site.UI.Web.Components.Ajax({
+            action: Mitosiz.Site.Commission.Actions.RecalculationSchoolBonus,
             autoSubmit: false,
-            onSuccess: base.Event.AjaxRecalculationRTIBonusSuccess
+            onSuccess: base.Event.RecalculationSchoolBonusSuccess
+        }),
+        AjaxRecalculationTeamBonus: new Mitosiz.Site.UI.Web.Components.Ajax({
+            action: Mitosiz.Site.Commission.Actions.RecalculationTeamBonus,
+            autoSubmit: false,
+            onSuccess: base.Event.RecalculationTeamBonusSuccess
         }),
         AjaxRecalculationRetirementBonus: new Mitosiz.Site.UI.Web.Components.Ajax({
             action: Mitosiz.Site.Commission.Actions.RecalculationRetirementBonus,
@@ -371,7 +388,10 @@ Mitosiz.Site.Commission.Index.Controller = function () {
                     '<td>' + data.lastName + '</td>' +
                     '<td>' + data.patronBonus + '</td>' +
                     '<td>' + data.retirementBonus + '</td>' +
-                    '<td>' + data.rtiBonus + '</td>' +
+                    '<td>' + data.teamBonus + '</td>' +
+                    '<td>' + data.schoolBonus + '</td>' +
+                    '<td>' + data.freedomBonus + '</td>' +
+                    '<td>' + data.marketingBonus + '</td>' +
                     '<td>' + data.extraBonus + '</td>' +
                     '<td>' + data.totalComission + '</td>' +
                     '</tr>');
