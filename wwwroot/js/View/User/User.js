@@ -217,7 +217,7 @@ Mitosiz.Site.User.Index.Controller = function () {
         },
         AjaxGenerateUserReportSuccess: function (data) {
             if (data) {
-                window.open('https://api.yosoymitosis.com/StaticFiles/ReportUser/' + data.data);
+                window.open('https://api.yosoymitzen.com/StaticFiles/ReportUser/' + data.data);
             }
         },
         btnSearchClick: function () {

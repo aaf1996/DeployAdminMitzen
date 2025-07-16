@@ -152,12 +152,12 @@ Mitosiz.Site.Purchase.Index.Controller = function () {
         },
         AjaxGeneratePurchaseReportSuccess: function (data) {
             if (data) {
-                window.open('https://api.yosoymitosis.com/StaticFiles/ReportPurchases/' + data.data);
+                window.open('https://api.yosoymitzen.com/StaticFiles/ReportPurchases/' + data.data);
             }
         },
         AjaxGenerateDetailPurchaseReportSuccess: function (data) {
             if (data) {
-                window.open('https://api.yosoymitosis.com/StaticFiles/ReportDetailPurchases/' + data.data);
+                window.open('https://api.yosoymitzen.com/StaticFiles/ReportDetailPurchases/' + data.data);
             }
         },
         AjaxDeletePurchaseSuccess: function (data) {

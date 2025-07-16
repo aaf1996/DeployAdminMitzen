@@ -95,13 +95,13 @@ Mitosiz.Site.Commission.Index.Controller = function () {
         AjaxGetReportNetworkWithCommissionSuccess: function (data) {
             if (data) {
                 $('#loading-area').fadeOut();
-                window.open('https://api.yosoymitosis.com/StaticFiles/ReportCommission/' + data.data);
+                window.open('https://api.yosoymitzen.com/StaticFiles/ReportCommission/' + data.data);
             }
         },
         AjaxGetReportGeneralCommissionSuccess: function (data) {
             if (data) {
                 $('#loading-area').fadeOut();
-                window.open('https://api.yosoymitosis.com/StaticFiles/ReportCommission/' + data.data);
+                window.open('https://api.yosoymitzen.com/StaticFiles/ReportCommission/' + data.data);
             }
         },
         AjaxGetPeriodSuccess: function (data) {
