@@ -88,7 +88,7 @@ Mitosiz.Site.Purchase.Index.Controller = function () {
                     base.Control.slcTypePayment().empty();
                     $.each(data.data, function (key, value) {
                         base.Control.slcTypePayment().append($('<option>', {
-                            value: value.typePaymentId,
+                            value: value.description,
                             text: value.description
                         }));
                     });
@@ -126,7 +126,7 @@ Mitosiz.Site.Purchase.Index.Controller = function () {
                     base.Control.slcTypePurchase().selectpicker('refresh');
                     base.Control.slcStore().val(data.data.storeId);
                     base.Control.slcStore().selectpicker('refresh');
-                    $("#slcTypePayment option:contains('" + data.data.typePayment + "')").prop("selected", true);
+                    base.Control.slcTypePayment().val(data.data.typePayment);
                     base.Control.slcTypePayment().selectpicker('refresh');
                     base.Control.slcStatusPurchase().val(data.data.statusPurchase);
                     base.Control.slcStatusPurchase().selectpicker('refresh');
