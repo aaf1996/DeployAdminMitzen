@@ -474,6 +474,8 @@ Mitosiz.Site.Purchase.Index.Controller = function () {
                     '<td>' + data.names + '</td>' +
                     '<td>' + data.lastName + '</td>' +
                     '<td>' + data.netAmount + '</td>' +
+                    '<td>' + data.exchange + '</td>' +
+                    '<td>' + data.pendingAmount + '</td>' +
                     '<td>' + data.realPoints + '</td>' +
                     '<td>' + data.promotionPoints + '</td>' +
                     '<td>' + data.nameTypePurchase + '</td>' +
