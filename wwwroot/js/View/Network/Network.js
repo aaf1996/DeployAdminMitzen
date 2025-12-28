@@ -52,6 +52,15 @@ Mitosiz.Site.Network.Index.Controller = function () {
                 }
             }
         },
+        AjaxRecalculationMaximumRangeSuccess: function (data) {
+            if (data) {
+                if (data.isSuccess) {
+                    $('#loading-area').fadeOut();
+                    Swal.fire("Excelente !!", "Recalculo terminado !!", "success");
+                    base.Function.GetUserNetworkForAdmin();
+                }
+            }
+        },
         AjaxGetPeriodSuccess: function (data) {
             if (data) {
                 if (data.isSuccess) {
@@ -113,6 +122,12 @@ Mitosiz.Site.Network.Index.Controller = function () {
                 };
                 base.Ajax.AjaxGeneralRecalculationRange.submit();
             }
+            else if (process == "3") {
+                base.Ajax.AjaxRecalculationMaximumRange.data = {
+                    networkPeriodId: base.Control.slcPeriod().val()
+                };
+                base.Ajax.AjaxRecalculationMaximumRange.submit();
+            }
         },
     };
     base.Ajax = {
@@ -130,6 +145,11 @@ Mitosiz.Site.Network.Index.Controller = function () {
             action: Mitosiz.Site.Network.Actions.GeneralRecalculationRange,
             autoSubmit: false,
             onSuccess: base.Event.AjaxGeneralRecalculationRangeSuccess
+        }),
+        AjaxRecalculationMaximumRange: new Mitosiz.Site.UI.Web.Components.Ajax({
+            action: Mitosiz.Site.Network.Actions.RecalculationMaximumRange,
+            autoSubmit: false,
+            onSuccess: base.Event.AjaxRecalculationMaximumRangeSuccess
         }),
         AjaxGetUserNetworkForAdmin: new Mitosiz.Site.UI.Web.Components.Ajax({
             action: Mitosiz.Site.Network.Actions.GetUserNetworkForAdmin,
