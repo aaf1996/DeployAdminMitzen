@@ -239,6 +239,7 @@ Mitosiz.Site.StarPoints.Index.Controller = function () {
                     '<td>' + data.lastName + '</td>' +
                     '<td>' + data.starPoints + '</td>' +
                     '<td>' + data.extraStar + '</td>' +
+                    '<td>' + data.totalStar + '</td>' +
                     '<td style="text-align: center !important;">' + data.periodName + '</td>' +
                     '</tr>');
             });
