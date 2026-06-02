@@ -45,6 +45,8 @@ Mitosiz.Site.Purchase.Index.Controller = function () {
         txtRealPoints: function () { return $('#txtRealPoints'); },
         txtPromotionPoints: function () { return $('#txtPromotionPoints'); },
         txtPointsWholesale: function () { return $('#txtPointsWholesale'); },
+        txtReceipt: function () { return $('#txtReceipt'); },
+        txtDocumentReceipt: function () { return $('#txtDocumentReceipt'); },
         slcStatusPurchase: function () { return $('#slcStatusPurchase'); },
         slcShippingStatus: function () { return $('#slcShippingStatus'); },
         btnUpdateModal: function () { return $('#btnUpdateModal'); },
@@ -122,6 +124,8 @@ Mitosiz.Site.Purchase.Index.Controller = function () {
                     base.Control.txtRealPoints().val(data.data.realPoints);
                     base.Control.txtPromotionPoints().val(data.data.promotionPoints);
                     base.Control.txtPointsWholesale().val(data.data.pointsWholesale);
+                    base.Control.txtReceipt().val(data.data.typeDocumentReceipt);
+                    base.Control.txtDocumentReceipt().val(data.data.receipt);
                     base.Control.slcTypePurchase().val(data.data.typePurchaseId);
                     base.Control.slcTypePurchase().selectpicker('refresh');
                     base.Control.slcStore().val(data.data.storeId);
@@ -483,6 +487,8 @@ Mitosiz.Site.Purchase.Index.Controller = function () {
                     '<td>' + data.typePayment + '</td>' +
                     '<td>' + data.statusPurchase + '</td>' +
                     '<td>' + data.shippingStatus + '</td>' +
+                    '<td>' + data.typeDocumentReceipt + '</td>' +
+                    '<td>' + data.receipt + '</td>' +
                     '<td>' +
                     '<div style="' + styleVoucher +'">' +
                     '<a href = "' + urlVoucher +'" class= "btn btn-primary shadow btn-s sharp me-1" target="_blank">' +

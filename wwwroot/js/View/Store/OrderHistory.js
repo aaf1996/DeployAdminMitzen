@@ -282,9 +282,11 @@ Mitosiz.Site.OrderHistory.Index.Controller = function () {
                 var styleVoucher = data.imageUrl == '' ? "display:none;" : "";
                 var styleDelete = data.statusPurchase == 'Realizada' ? "display:none;" : "";
                 var styleApprove = data.statusPurchase == 'Pendiente' || data.statusPurchase == 'Realizada' ? "display:none;" : "";
+                var styleApproveDispatch = data.shippingStatus == 'Despachado' ? "display:none;" : "";
+                var shippingStatus = data.shippingStatus ?? "";
                 base.Control.tbodyTable().append('<tr style="text-align: center;">' +
                     '<td>' +
-                    '<div class="dropdown">' +
+                    '<div class="dropdown" style="position: static;">' +
                     '<button type="button" class="btn btn-success light sharp" data-bs-toggle="dropdown">' +
                     '<svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1">' +
                     '<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">' +
@@ -309,7 +311,7 @@ Mitosiz.Site.OrderHistory.Index.Controller = function () {
                     '<td>' + data.quantity + '</td>' +
                     '<td>' + data.nameTypePurchase + '</td>' +
                     '<td>' + data.statusPurchase + '</td>' +
-                    '<td>' + data.shippingStatus + '</td>' +
+                    '<td>' + shippingStatus + '</td>' +
                     '<td>' + data.typePayment + '</td>' +
                     '<td>' +
                     '<div style="' + styleVoucher + '">' +
@@ -318,7 +320,7 @@ Mitosiz.Site.OrderHistory.Index.Controller = function () {
                     '</a>' +
                     '</div></td>' +
                     '<td class="column-modal">' +
-                    '<div class="approveShipping" value="' + data.wholesaleOrderId + '">' +
+                    '<div style="' + styleApproveDispatch + '" class="approveShipping" value="' + data.wholesaleOrderId + '">' +
                     '<a class= "btn btn-success shadow btn-s sharp me-1">' +
                     '<i class="fa-solid flaticon-381-success-2"></i>' +
                     '</a>' +
