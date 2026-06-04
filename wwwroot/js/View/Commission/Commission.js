@@ -35,6 +35,13 @@ Mitosiz.Site.Commission.Index.Controller = function () {
         txtPatronBonus: function () { return $('#txtPatronBonus'); },
         txtRetirementBonus: function () { return $('#txtRetirementBonus'); },
         txtExtraBonus: function () { return $('#txtExtraBonus'); },
+        txtTeamBonus: function () { return $('#txtTeamBonus'); },
+        txtSchoolBonus: function () { return $('#txtSchoolBonus'); },
+        txtMarketingBonus: function () { return $('#txtMarketingBonus'); },
+        txtFreedomBonus: function () { return $('#txtFreedomBonus'); },
+        txtBuilderBonus: function () { return $('#txtBuilderBonus'); },
+        txtAcceleratorBonus: function () { return $('#txtAcceleratorBonus'); },
+        txtDiamondBonus: function () { return $('#txtDiamondBonus'); },
         modalUpdate: function () { return $('#modalUpdate'); },
         btnUpdateModal: function () { return $('#btnUpdateModal'); },
 
@@ -133,6 +140,13 @@ Mitosiz.Site.Commission.Index.Controller = function () {
                     base.Control.txtPatronBonus().val(data.data.patronBonus);
                     base.Control.txtRetirementBonus().val(data.data.retirementBonus);
                     base.Control.txtExtraBonus().val(data.data.extraBonus);
+                    base.Control.txtTeamBonus().val(data.data.teamBonus);
+                    base.Control.txtSchoolBonus().val(data.data.schoolBonus);
+                    base.Control.txtMarketingBonus().val(data.data.marketingBonus);
+                    base.Control.txtFreedomBonus().val(data.data.freedomBonus);
+                    base.Control.txtBuilderBonus().val(data.data.builderBonus);
+                    base.Control.txtAcceleratorBonus().val(data.data.acceleratorBonus);
+                    base.Control.txtDiamondBonus().val(data.data.diamondBonus);
                     base.Control.modalUpdate().modal('show');
                 }
             }
@@ -229,7 +243,14 @@ Mitosiz.Site.Commission.Index.Controller = function () {
                 commissionId: base.Parameters.commissionId,
                 patronBonus: base.Control.txtPatronBonus().val(),
                 retirementBonus: base.Control.txtRetirementBonus().val(),
-                extraBonus: base.Control.txtExtraBonus().val()
+                extraBonus: base.Control.txtExtraBonus().val(),
+                teamBonus: base.Control.txtTeamBonus().val(),
+                schoolBonus: base.Control.txtSchoolBonus().val(),
+                marketingBonus: base.Control.txtMarketingBonus().val(),
+                freedomBonus: base.Control.txtFreedomBonus().val(),
+                builderBonus: base.Control.txtBuilderBonus().val(),
+                acceleratorBonus: base.Control.txtAcceleratorBonus().val(),
+                diamondBonus: base.Control.txtDiamondBonus().val(),
             };
             base.Ajax.AjaxUpdateCommissionUserByCommissionId.submit();
         },
