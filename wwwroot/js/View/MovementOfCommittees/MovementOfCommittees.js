@@ -265,7 +265,7 @@ Mitosiz.Site.MovementOfCommittees.Index.Controller = function () {
         },
         AjaxGetMovementOfCommitteesForReportSuccess: function (data) {
             if (data) {
-                window.open('https://api.yosoymitosis.com/StaticFiles/ReportMovementOfCommittees/' + data.data);
+                window.open('https://api.yosoymitzen.com/StaticFiles/ReportMovementOfCommittees/' + data.data);
             }
         },
         btnSearchClick: function () {
@@ -524,7 +524,7 @@ Mitosiz.Site.MovementOfCommittees.Index.Controller = function () {
         FillData: function (listData) {
             base.Control.tbodyTable().empty();
             listData.forEach(function (data) {
-                var urlVoucher = 'https://api.yosoymitosis.com/StaticFiles/MovementOfCommittees/' + data.fileName;
+                var urlVoucher = 'https://api.yosoymitzen.com/StaticFiles/MovementOfCommittees/' + data.fileName;
                 var styleVoucher = data.fileName == '' || data.fileName == null ? "display:none;" : "";
                 var receipt = data.receipt == null ? "" : data.receipt;
                 var observation = data.observation == null ? "" : data.observation;
