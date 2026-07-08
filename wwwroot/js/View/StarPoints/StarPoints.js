@@ -31,6 +31,7 @@ Mitosiz.Site.StarPoints.Index.Controller = function () {
         txtFullName: function () { return $('#txtFullName'); },
         txtStarPoints: function () { return $('#txtStarPoints'); },
         txtExtraStar: function () { return $('#txtExtraStar'); },
+        txtStarPointsVIP200: function () { return $('#txtStarPointsVIP200'); },
         btnUpdateModal: function () { return $('#btnUpdateModal'); },
         btnCreateModal: function () { return $('#btnCreateModal'); },
     };
@@ -238,6 +239,7 @@ Mitosiz.Site.StarPoints.Index.Controller = function () {
                     '<td>' + data.names + '</td>' +
                     '<td>' + data.lastName + '</td>' +
                     '<td>' + data.starPoints + '</td>' +
+                    '<td>' + data.starVip200 + '</td>' +
                     '<td>' + data.extraStar + '</td>' +
                     '<td>' + data.totalStar + '</td>' +
                     '<td style="text-align: center !important;">' + data.periodName + '</td>' +
@@ -262,6 +264,7 @@ Mitosiz.Site.StarPoints.Index.Controller = function () {
             base.Control.txtFullName().val(data.fullName);
             base.Control.txtStarPoints().val(data.starPoints);
             base.Control.txtExtraStar().val(data.extraStar);
+            base.Control.txtStarPointsVIP200().val(data.starVip200);
         },
         ClearFilters: function () {
             base.Control.txtUserIdFilter().val("");
