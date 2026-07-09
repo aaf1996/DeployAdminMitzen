@@ -10,6 +10,7 @@ Mitosiz.Site.StarPoints.Index.Controller = function () {
         base.Control.btnRecalculation().click(base.Event.btnRecalculationClick);
         base.Control.btnUpdateModal().click(base.Event.btnUpdateModalClick);
         base.Ajax.GetStarPeriodDropDown.submit();
+        base.Ajax.AjaxGetPeriods.submit();
     };
     base.Parameters = {
         currentPage: 1,
@@ -34,6 +35,7 @@ Mitosiz.Site.StarPoints.Index.Controller = function () {
         txtStarPointsVIP200: function () { return $('#txtStarPointsVIP200'); },
         btnUpdateModal: function () { return $('#btnUpdateModal'); },
         btnCreateModal: function () { return $('#btnCreateModal'); },
+        slcCommissionPeriodFilter: function () { return $('#slcCommissionPeriodFilter'); },
     };
     base.Event = {
         AjaxGetStarPointsForAdminSuccess: function (data) {
@@ -73,6 +75,26 @@ Mitosiz.Site.StarPoints.Index.Controller = function () {
                 }
             }
         },
+        AjaxGetPeriodSuccess: function (data) {
+            if (data) {
+                if (data.isSuccess) {
+                    base.Control.slcCommissionPeriodFilter().empty();
+                    $.each(data.data, function (key, value) {
+                        base.Control.slcCommissionPeriodFilter().append($('<option>', {
+                            value: value.commissionPeriodId,
+                            text: value.periodName
+                        }));
+                    });
+                    base.Control.slcCommissionPeriodFilter().selectpicker('refresh');
+                }
+            }
+        },
+        AjaxGetReportStarVIP200Success: function (data) {
+            if (data) {
+                $('#loading-area').fadeOut();
+                window.open('https://api.yosoymitzen.com/StaticFiles/ReportStarPoints/' + data.data);
+            }
+        },
         btnUpdateModalClick: function () {
             base.Ajax.AjaxUpdateStarPointsForAdmin.data = {
                 starPointsId: base.Parameters.starPointsId,
@@ -107,15 +129,27 @@ Mitosiz.Site.StarPoints.Index.Controller = function () {
         btnRecalculationClick: function () {
             $('#loading-area').fadeIn();
             var process = base.Control.slcProcess().val();
+
             if (process == "1") {
                 base.Ajax.AjaxRecalculationStarPoints.data = {
                     starPeriodId: base.Control.slcPeriodFilter().val()
                 };
                 base.Ajax.AjaxRecalculationStarPoints.submit();
             }
+            else if (process == "2") {
+                base.Ajax.AjaxGetReportStarVIP200.data = {
+                    commissionPeriodId: base.Control.slcCommissionPeriodFilter().val()
+                };
+                base.Ajax.AjaxGetReportStarVIP200.submit();
+            }
         },
     };
     base.Ajax = {
+        AjaxGetPeriods: new Mitosiz.Site.UI.Web.Components.Ajax({
+            action: Mitosiz.Site.StarPoints.Actions.GetComissionPeriodForComission,
+            autoSubmit: false,
+            onSuccess: base.Event.AjaxGetPeriodSuccess
+        }),
         GetStarPeriodDropDown: new Mitosiz.Site.UI.Web.Components.Ajax({
             action: Mitosiz.Site.StarPoints.Actions.GetStarPeriodDropDown,
             autoSubmit: false,
@@ -140,6 +174,11 @@ Mitosiz.Site.StarPoints.Index.Controller = function () {
             action: Mitosiz.Site.StarPoints.Actions.UpdateStarPointsForAdmin,
             autoSubmit: false,
             onSuccess: base.Event.AjaxUpdateStarPointsForAdminSuccess
+        }),
+        AjaxGetReportStarVIP200: new Mitosiz.Site.UI.Web.Components.Ajax({
+            action: Mitosiz.Site.StarPoints.Actions.GetReportStarVIP200,
+            autoSubmit: false,
+            onSuccess: base.Event.AjaxGetReportStarVIP200Success
         }),
     };
     base.Function = {
