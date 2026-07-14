@@ -142,6 +142,12 @@ Mitosiz.Site.StarPoints.Index.Controller = function () {
                 };
                 base.Ajax.AjaxGetReportStarVIP200.submit();
             }
+            else if (process == "3") {
+                base.Ajax.AjaxReportStarByProduct.data = {
+                    starPeriodId: base.Control.slcPeriodFilter().val()
+                };
+                base.Ajax.AjaxReportStarByProduct.submit();
+            }
         },
     };
     base.Ajax = {
@@ -179,6 +185,11 @@ Mitosiz.Site.StarPoints.Index.Controller = function () {
             action: Mitosiz.Site.StarPoints.Actions.GetReportStarVIP200,
             autoSubmit: false,
             onSuccess: base.Event.AjaxGetReportStarVIP200Success
+        }),
+        AjaxReportStarByProduct: new Mitosiz.Site.UI.Web.Components.Ajax({
+            action: Mitosiz.Site.StarPoints.Actions.ReportStarByProduct,
+            autoSubmit: false,
+            onSuccess: base.Event.AjaxReportStarByProductSuccess
         }),
     };
     base.Function = {
