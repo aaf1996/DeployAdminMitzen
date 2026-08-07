@@ -27,7 +27,7 @@ Mitosiz.Site.PurchaseAdmin.Index.Controller = function () {
                         var results = $.map(data.data, function (tag) {
                             return {
                                 label: tag.namePatron,
-                                value: tag.userId
+                                id: tag.userId
                             };
                         });
                         response(results);
@@ -40,7 +40,7 @@ Mitosiz.Site.PurchaseAdmin.Index.Controller = function () {
             minLength: 0,
             maxResults: 6,
             select: function (event, ui) {
-                base.Control.hiddenUser().val(ui.item.value);
+                base.Control.hiddenUser().val(ui.item.id);
                 base.Control.txtUser().val(ui.item.label);
                 return false;
             }
@@ -243,6 +243,7 @@ Mitosiz.Site.PurchaseAdmin.Index.Controller = function () {
         },
         btnCreatePurchaseClick: function () {
             base.Control.txtUser().val("");
+            base.Control.hiddenUser().val(0);
             base.Control.slcStore().val(1);
             base.Control.slcStore().selectpicker('refresh');
             base.Control.slcTypeOfOrder().val(1);
