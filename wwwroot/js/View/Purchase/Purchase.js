@@ -452,6 +452,8 @@ Mitosiz.Site.Purchase.Index.Controller = function () {
             base.Control.tbodyTable().empty();
             listData.forEach(function (data) {
                 var urlVoucher = 'https://api.yosoymitzen.com/StaticFiles/PaymentImg/' + data.voucher;
+                var urlProductsDelivered = 'https://api.yosoymitzen.com/StaticFiles/ProductsDelivered/' + data.urlProductsDelivered;
+                var styleProductsDelivered = data.urlProductsDelivered == '' ? "display:none;" : "";
                 var styleVoucher = data.voucher == '' ? "display:none;" : "";
                 var styleDelete = data.statusPurchase == 'Evaluación' || data.statusPurchase == 'Validada' ? "display:none;" : "";
                 base.Control.tbodyTable().append('<tr style="text-align: center;">' +
@@ -493,6 +495,12 @@ Mitosiz.Site.Purchase.Index.Controller = function () {
                     '<div style="' + styleVoucher +'">' +
                     '<a href = "' + urlVoucher +'" class= "btn btn-primary shadow btn-s sharp me-1" target="_blank">' +
                             '<i class="fa-solid fa-ticket"></i>' +
+                        '</a>' +
+                    '</div></td>' +
+                    '<td>' +
+                    '<div style="' + styleProductsDelivered +'">' +
+                    '<a href = "' + urlProductsDelivered +'" class= "btn btn-primary shadow btn-s sharp me-1" target="_blank">' +
+                            '<i class="fa-solid fa-image"></i>' +
                         '</a>' +
                     '</div></td>' +
                     '</tr>');
