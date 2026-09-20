@@ -42,6 +42,7 @@ Mitosiz.Site.Commission.Index.Controller = function () {
         txtBuilderBonus: function () { return $('#txtBuilderBonus'); },
         txtAcceleratorBonus: function () { return $('#txtAcceleratorBonus'); },
         txtDiamondBonus: function () { return $('#txtDiamondBonus'); },
+        txtFranquiciaBonus: function () { return $('#txtFranquiciaBonus'); },
         modalUpdate: function () { return $('#modalUpdate'); },
         btnUpdateModal: function () { return $('#btnUpdateModal'); },
 
@@ -110,6 +111,17 @@ Mitosiz.Site.Commission.Index.Controller = function () {
                 $('#loading-area').fadeOut();
             }
         },
+        AjaxRecalculationFranquiciaBonusSuccess: function (data) {
+            if (data) {
+                if (data.isSuccess) {
+                    Swal.fire("Excelente !!", "Recalculo terminado !!", "success");
+                }
+                else {
+                    Swal.fire("Oops...", data.message, "error");
+                }
+                $('#loading-area').fadeOut();
+            }
+        },
         AjaxGetReportNetworkWithCommissionSuccess: function (data) {
             if (data) {
                 $('#loading-area').fadeOut();
@@ -158,6 +170,7 @@ Mitosiz.Site.Commission.Index.Controller = function () {
                     base.Control.txtBuilderBonus().val(data.data.builderBonus);
                     base.Control.txtAcceleratorBonus().val(data.data.acceleratorBonus);
                     base.Control.txtDiamondBonus().val(data.data.diamondBonus);
+                    base.Control.txtFranquiciaBonus().val(data.data.franquiciaBonus);
                     base.Control.modalUpdate().modal('show');
                 }
             }
@@ -238,6 +251,12 @@ Mitosiz.Site.Commission.Index.Controller = function () {
                 };
                 base.Ajax.AjaxRecalculationBuilderBonus.submit();
             }
+            else if (process == "7") {
+                base.Ajax.AjaxRecalculationFranquiciaBonus.data = {
+                    commissionPeriodId: base.Control.slcPeriod().val()
+                };
+                base.Ajax.AjaxRecalculationFranquiciaBonus.submit();
+            }
         },
         btnGenerateReportClick: function () {
             $('#loading-area').fadeIn();
@@ -268,6 +287,7 @@ Mitosiz.Site.Commission.Index.Controller = function () {
                 builderBonus: base.Control.txtBuilderBonus().val(),
                 acceleratorBonus: base.Control.txtAcceleratorBonus().val(),
                 diamondBonus: base.Control.txtDiamondBonus().val(),
+                franquiciaBonus: base.Control.txtFranquiciaBonus().val(),
             };
             base.Ajax.AjaxUpdateCommissionUserByCommissionId.submit();
         },
@@ -332,6 +352,11 @@ Mitosiz.Site.Commission.Index.Controller = function () {
             action: Mitosiz.Site.Commission.Actions.RecalculationBuilderBonus,
             autoSubmit: false,
             onSuccess: base.Event.AjaxRecalculationBuilderBonusSuccess
+        }),
+        AjaxRecalculationFranquiciaBonus: new Mitosiz.Site.UI.Web.Components.Ajax({
+            action: Mitosiz.Site.Commission.Actions.RecalculationFranquiciaBonus,
+            autoSubmit: false,
+            onSuccess: base.Event.AjaxRecalculationFranquiciaBonusSuccess
         }),
     };
     base.Function = {
@@ -435,6 +460,7 @@ Mitosiz.Site.Commission.Index.Controller = function () {
                     '<td>' + data.schoolBonus + '</td>' +
                     '<td>' + data.freedomBonus + '</td>' +
                     '<td>' + data.marketingBonus + '</td>' +
+                    '<td>' + data.franquiciaBonus + '</td>' +
                     '<td>' + data.extraBonus + '</td>' +
                     '<td>' + data.totalComission + '</td>' +
                     '</tr>');
